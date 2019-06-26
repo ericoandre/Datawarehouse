@@ -134,23 +134,6 @@ CREATE TABLE IF NOT EXISTS `datawarehouse`.`dim_tempo` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `datawarehouse`.`dim_hora`
--- -----------------------------------------------------
-
-CREATE TABLE IF NOT EXISTS `datawarehouse`.`dim_hora` (
-  `id_dim_hora` INT NULL AUTO_INCREMENT,
-  `cod_ID_TEMPO` INT NULL,
-  `HORA` INT NULL,
-  `MINUTOS` INT NULL,
-  `SEGUNDOS` INT NULL,
-  `HORA_COMPLETA` TIME NULL,
-  `version` INT NULL,
-  `date_from` DATETIME NULL,
-  `date_to` DATETIME NULL,
-  PRIMARY KEY (`id_dim_hora`))
-ENGINE = InnoDB;
-
--- -----------------------------------------------------
 -- Table `datawarehouse`.`dim_periodo`
 -- -----------------------------------------------------
 
@@ -217,14 +200,13 @@ CREATE TABLE IF NOT EXISTS `datawarehouse`.`fato_crime_area_escola` (
   `dim_sexo_id_dim_sexo` INT NOT NULL,
   `dim_quadra_id_dim_quadra` INT NOT NULL,
   `dim_tempo_id_dim_tempo` INT NOT NULL,
-  `dim_hora_id_dim_hora` INT NOT NULL,
   `dim_periodo_id_dim_periodo` INT NOT NULL,
   `dim_dependencia_id_dim_dependencia` INT NOT NULL,
   `dim_ocorrencia_id_dim_ocorrencia` INT NOT NULL,
   `dim_municipio_id_dim_municipio` INT NOT NULL,
   `dim_zona_id_dim_zona` INT NOT NULL,
   `dim_cor_cutis_id_dim_cor_cutis` INT NOT NULL,
-  PRIMARY KEY (`dim_conduta_id_dim_conduta`, `dim_escola_id_dim_escola`, `dim_sexo_id_dim_sexo`, `dim_quadra_id_dim_quadra`, `dim_tempo_id_dim_tempo`, `dim_hora_id_dim_hora`,`dim_periodo_id_dim_periodo`, `dim_dependencia_id_dim_dependencia`, `dim_ocorrencia_id_dim_ocorrencia`, `dim_municipio_id_dim_municipio`, `dim_zona_id_dim_zona`, `dim_cor_cutis_id_dim_cor_cutis`),
+  PRIMARY KEY (`dim_conduta_id_dim_conduta`, `dim_escola_id_dim_escola`, `dim_sexo_id_dim_sexo`, `dim_quadra_id_dim_quadra`, `dim_tempo_id_dim_tempo`, `dim_periodo_id_dim_periodo`, `dim_dependencia_id_dim_dependencia`, `dim_ocorrencia_id_dim_ocorrencia`, `dim_municipio_id_dim_municipio`, `dim_zona_id_dim_zona`, `dim_cor_cutis_id_dim_cor_cutis`),
   -- INDEX `fk_fato_crime_area_escola_dim_escola1_idx` (`dim_escola_id_dim_escola` ASC) VISIBLE,
   -- INDEX `fk_fato_crime_area_escola_dim_sexo1_idx` (`dim_sexo_id_dim_sexo` ASC) VISIBLE,
   -- INDEX `fk_fato_crime_area_escola_dim_quadra1_idx` (`dim_quadra_id_dim_quadra` ASC) VISIBLE,
@@ -255,18 +237,11 @@ CREATE TABLE IF NOT EXISTS `datawarehouse`.`fato_crime_area_escola` (
     REFERENCES `datawarehouse`.`dim_quadra` (`id_dim_quadra`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_fato_crime_area_escola_id_dim_hora1`
-    FOREIGN KEY (`dim_hora_id_dim_hora`)
-    REFERENCES `datawarehouse`.`dim_hora` (`id_dim_hora`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_fato_crime_area_escola_id_dim_tempo1`
     FOREIGN KEY (`dim_tempo_id_dim_tempo`)
     REFERENCES `datawarehouse`.`dim_tempo` (`id_dim_tempo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-
-
   CONSTRAINT `fk_fato_crime_area_escola_dim_periodo`
     FOREIGN KEY (`dim_periodo_id_dim_periodo`)
     REFERENCES `datawarehouse`.`dim_periodo` (`id_dim_periodo`)
