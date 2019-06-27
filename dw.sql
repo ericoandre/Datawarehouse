@@ -108,7 +108,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `datawarehouse`.`dim_tempo` (
   `id_dim_tempo` INT NULL AUTO_INCREMENT,
-  `cod_ID_TEMPO` INT NULL,
+  `cod_id_tempo` INT NULL,
   `version` INT NULL,
   `date_from` DATETIME NULL,
   `date_to` DATETIME NULL,
@@ -260,7 +260,7 @@ CREATE TABLE IF NOT EXISTS `datawarehouse`.`fato_crime_area_escola` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_fato_crime_area_escola_dim_Localizacao1`
     FOREIGN KEY (`dim_Localizacao_id_dim_Localizacao`)
-    REFERENCES `datawarehouse`.`dim_municipio` (`id_dim_Localizacao`)
+    REFERENCES `datawarehouse`.`dim_Localizacao` (`id_dim_Localizacao`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_fato_crime_area_escola_dim_zona1`

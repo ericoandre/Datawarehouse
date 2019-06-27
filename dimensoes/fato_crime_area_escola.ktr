@@ -569,27 +569,17 @@
     </hop>
     <hop>
       <from>dim_zona</from>
-      <to>dim_municipio</to>
+      <to>dim_localizacao</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>dim_municipio</from>
+      <from>dim_localizacao</from>
       <to>dim_ocorrencia</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>dim_ocorrencia</from>
       <to>dim_tempo</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>dim_tempo</from>
-      <to>dim_hora</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>dim_hora</from>
-      <to>dim_periodo</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -615,6 +605,11 @@
     <hop>
       <from>Table input</from>
       <to>dim_cor_cutis</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>dim_tempo</from>
+      <to>dim_periodo</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -643,7 +638,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>400</xloc>
+      <xloc>288</xloc>
       <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
@@ -671,7 +666,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>272</xloc>
+      <xloc>176</xloc>
       <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
@@ -694,7 +689,7 @@
 , ESC.NO_ENTIDADE as nome, LOC.ID_LOCALIZACAO as cod_Localizacao, MUN.nome_municipio, MUN.ID_INDICE_POPULACIONAL, INPOPU.LABEL, RUB.ID_TIPO_RUBRICA as cod_rubrica
 , RUB.TIPO as rubrica, PER.ID_PERIODO as cod_periodo, PER.PERIODO as periodo, QUA.ID_TIPO_QUADRA as cod_quadra
 , QUA.TIPO as quadra, SEX.ID_TIPO_SEXO as cod_sexo, SEX.TIPO as SEXO_PESSOA, ZON.ID_TIPO_ZONA as cod_zona
-, ZON.TIPO as tipo_zona
+, ZON.TIPO as tipo_zona, TEM.ID_TEMPO AS cod_id_tempo
 FROM 
 projetodw.Ocorrencia O, 
 projetodw.TipoCor COR, 
@@ -717,7 +712,8 @@ AND TEM.ID_PERIODO = PER.ID_PERIODO
 AND ENV.ID_TIPO_COR = COR.ID_TIPO_COR
 AND ENV.ID_TIPO_SEXO = SEX.ID_TIPO_SEXO
 and LOC.ID_MUNICIPIO =  MUN.ID_MUNICIPIO 
-and INPOPU.ID_INDICE_POPULACIONAL = MUN.ID_INDICE_POPULACIONAL;</sql>
+and INPOPU.ID_INDICE_POPULACIONAL = MUN.ID_INDICE_POPULACIONAL
+AND MUN.ID_MUNICIPIO = 1;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -776,7 +772,7 @@ and INPOPU.ID_INDICE_POPULACIONAL = MUN.ID_INDICE_POPULACIONAL;</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
+      <xloc>416</xloc>
       <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
@@ -802,6 +798,18 @@ and INPOPU.ID_INDICE_POPULACIONAL = MUN.ID_INDICE_POPULACIONAL;</sql>
       <orderby/>
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>cod_cor_cuti</name>
+        <field>cod_cor_cuti</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id_dim_cor_cutis</name>
+        <rename>id_dim_cor_cutis</rename>
+        <default>0</default>
+        <type>Integer</type>
+      </value>
     </lookup>
     <attributes/>
     <cluster_schema/>
@@ -828,16 +836,28 @@ and INPOPU.ID_INDICE_POPULACIONAL = MUN.ID_INDICE_POPULACIONAL;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection/>
+    <connection>dw</connection>
     <cache>N</cache>
     <cache_load_all>N</cache_load_all>
     <cache_size>0</cache_size>
     <lookup>
       <schema/>
-      <table>Tabela Lookup</table>
+      <table>dim_dependencia</table>
       <orderby/>
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>cod_dependencia</name>
+        <field>cod_dependencia</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id_dim_dependencia</name>
+        <rename>id_dim_dependencia</rename>
+        <default>0</default>
+        <type>Integer</type>
+      </value>
     </lookup>
     <attributes/>
     <cluster_schema/>
@@ -848,7 +868,7 @@ and INPOPU.ID_INDICE_POPULACIONAL = MUN.ID_INDICE_POPULACIONAL;</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>160</xloc>
+      <xloc>48</xloc>
       <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
@@ -881,8 +901,8 @@ and INPOPU.ID_INDICE_POPULACIONAL = MUN.ID_INDICE_POPULACIONAL;</sql>
         <name2/>
       </key>
       <value>
-        <name>cod_dependencia</name>
-        <rename>cod_dependencia</rename>
+        <name>id_dim_dependencia</name>
+        <rename>id_dim_dependencia</rename>
         <default>0</default>
         <type>Integer</type>
       </value>
@@ -902,7 +922,7 @@ and INPOPU.ID_INDICE_POPULACIONAL = MUN.ID_INDICE_POPULACIONAL;</sql>
     </GUI>
   </step>
   <step>
-    <name>dim_hora</name>
+    <name>dim_localizacao</name>
     <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -912,16 +932,28 @@ and INPOPU.ID_INDICE_POPULACIONAL = MUN.ID_INDICE_POPULACIONAL;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection/>
+    <connection>dw</connection>
     <cache>N</cache>
     <cache_load_all>N</cache_load_all>
     <cache_size>0</cache_size>
     <lookup>
       <schema/>
-      <table>Tabela Lookup</table>
+      <table>dim_localizacao</table>
       <orderby/>
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>cod_Localizacao</name>
+        <field>cod_Localizacao</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id_dim_Localizacao</name>
+        <rename>id_dim_Localizacao</rename>
+        <default>0</default>
+        <type>None</type>
+      </value>
     </lookup>
     <attributes/>
     <cluster_schema/>
@@ -932,43 +964,7 @@ and INPOPU.ID_INDICE_POPULACIONAL = MUN.ID_INDICE_POPULACIONAL;</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>272</xloc>
-      <yloc>96</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>dim_municipio</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection/>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema/>
-      <table>Tabela Lookup</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>544</xloc>
+      <xloc>496</xloc>
       <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
@@ -984,16 +980,28 @@ and INPOPU.ID_INDICE_POPULACIONAL = MUN.ID_INDICE_POPULACIONAL;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection/>
+    <connection>dw</connection>
     <cache>N</cache>
     <cache_load_all>N</cache_load_all>
     <cache_size>0</cache_size>
     <lookup>
       <schema/>
-      <table>Tabela Lookup</table>
+      <table>dim_ocorrencia</table>
       <orderby/>
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>cod_ocorrencia</name>
+        <field>cod_ocorrencia</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id_dim_ocorrencia</name>
+        <rename>id_dim_ocorrencia</rename>
+        <default>0</default>
+        <type>Integer</type>
+      </value>
     </lookup>
     <attributes/>
     <cluster_schema/>
@@ -1004,7 +1012,7 @@ and INPOPU.ID_INDICE_POPULACIONAL = MUN.ID_INDICE_POPULACIONAL;</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
+      <xloc>496</xloc>
       <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1020,16 +1028,28 @@ and INPOPU.ID_INDICE_POPULACIONAL = MUN.ID_INDICE_POPULACIONAL;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection/>
+    <connection>dw</connection>
     <cache>N</cache>
     <cache_load_all>N</cache_load_all>
     <cache_size>0</cache_size>
     <lookup>
       <schema/>
-      <table>Tabela Lookup</table>
+      <table>dim_periodo</table>
       <orderby/>
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>cod_periodo</name>
+        <field>cod_periodo</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id_dim_periodo</name>
+        <rename>id_dim_periodo</rename>
+        <default>0</default>
+        <type>Integer</type>
+      </value>
     </lookup>
     <attributes/>
     <cluster_schema/>
@@ -1040,7 +1060,7 @@ and INPOPU.ID_INDICE_POPULACIONAL = MUN.ID_INDICE_POPULACIONAL;</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>160</xloc>
+      <xloc>256</xloc>
       <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1056,52 +1076,28 @@ and INPOPU.ID_INDICE_POPULACIONAL = MUN.ID_INDICE_POPULACIONAL;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection/>
+    <connection>dw</connection>
     <cache>N</cache>
     <cache_load_all>N</cache_load_all>
     <cache_size>0</cache_size>
     <lookup>
       <schema/>
-      <table>Tabela Lookup</table>
+      <table>dim_quadra</table>
       <orderby/>
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>48</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>dim_sexo</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection/>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema/>
-      <table>Tabela Lookup</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>cod_quadra</name>
+        <field>cod_quadra</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id_dim_quadra</name>
+        <rename>id_dim_quadra</rename>
+        <default>0</default>
+        <type>Integer</type>
+      </value>
     </lookup>
     <attributes/>
     <cluster_schema/>
@@ -1118,7 +1114,7 @@ and INPOPU.ID_INDICE_POPULACIONAL = MUN.ID_INDICE_POPULACIONAL;</sql>
     </GUI>
   </step>
   <step>
-    <name>dim_tempo</name>
+    <name>dim_sexo</name>
     <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -1128,16 +1124,28 @@ and INPOPU.ID_INDICE_POPULACIONAL = MUN.ID_INDICE_POPULACIONAL;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection/>
+    <connection>dw</connection>
     <cache>N</cache>
     <cache_load_all>N</cache_load_all>
     <cache_size>0</cache_size>
     <lookup>
       <schema/>
-      <table>Tabela Lookup</table>
+      <table>dim_sexo</table>
       <orderby/>
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>cod_sexo</name>
+        <field>cod_sexo</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id_dim_sexo</name>
+        <rename>id_dim_sexo</rename>
+        <default>0</default>
+        <type>Integer</type>
+      </value>
     </lookup>
     <attributes/>
     <cluster_schema/>
@@ -1148,7 +1156,55 @@ and INPOPU.ID_INDICE_POPULACIONAL = MUN.ID_INDICE_POPULACIONAL;</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>400</xloc>
+      <xloc>144</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>dim_tempo</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>dw</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>dim_tempo</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>cod_id_tempo</name>
+        <field>cod_id_tempo</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id_dim_tempo</name>
+        <rename>id_dim_tempo</rename>
+        <default>0</default>
+        <type>Integer</type>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>368</xloc>
       <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1181,8 +1237,8 @@ and INPOPU.ID_INDICE_POPULACIONAL = MUN.ID_INDICE_POPULACIONAL;</sql>
         <name2/>
       </key>
       <value>
-        <name>cod_zona</name>
-        <rename>cod_zona</rename>
+        <name>id_dim_zona</name>
+        <rename>id_dim_zona</rename>
         <default>0</default>
         <type>Integer</type>
       </value>
@@ -1196,7 +1252,7 @@ and INPOPU.ID_INDICE_POPULACIONAL = MUN.ID_INDICE_POPULACIONAL;</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
+      <xloc>368</xloc>
       <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
