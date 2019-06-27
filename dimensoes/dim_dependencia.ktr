@@ -578,7 +578,7 @@
     <sql>SELECT
   ID_TIPO_DEPENDENCIA as cod_dependencia
 , TIPO as dependencia
-FROM projetodw.TIPO_DEPENDENCIA</sql>
+FROM projetodw.TipoDependencia</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -593,8 +593,8 @@ FROM projetodw.TIPO_DEPENDENCIA</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>64</xloc>
-      <yloc>128</yloc>
+      <xloc>32</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -654,8 +654,8 @@ FROM projetodw.TIPO_DEPENDENCIA</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>240</xloc>
-      <yloc>128</yloc>
+      <xloc>208</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -692,8 +692,8 @@ FROM projetodw.TIPO_DEPENDENCIA</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>608</xloc>
-      <yloc>128</yloc>
+      <xloc>576</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -731,8 +731,8 @@ INSERT INTO dim_dependencia (id_dim_dependencia, `cod_dependencia`, `dependencia
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>128</yloc>
+      <xloc>384</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

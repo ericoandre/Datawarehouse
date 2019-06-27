@@ -619,8 +619,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>240</xloc>
-      <yloc>128</yloc>
+      <xloc>224</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -657,8 +657,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
-      <yloc>128</yloc>
+      <xloc>656</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -696,8 +696,8 @@ INSERT INTO dim_quadra (id_dim_quadra, `cod_quadra`, `quadra`, `version`, `date_
       </output>
     </remotesteps>
     <GUI>
-      <xloc>464</xloc>
-      <yloc>128</yloc>
+      <xloc>448</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -713,7 +713,7 @@ INSERT INTO dim_quadra (id_dim_quadra, `cod_quadra`, `quadra`, `version`, `date_
       <schema_name/>
     </partitioning>
     <connection>Origem</connection>
-    <sql>SELECT ID_TIPO_QUADRA as cod_quadra , TIPO as quadra FROM projetodw.TIPO_QUADRA</sql>
+    <sql>SELECT ID_TIPO_QUADRA as cod_quadra , TIPO as quadra FROM projetodw.TipoQuadra</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -728,8 +728,8 @@ INSERT INTO dim_quadra (id_dim_quadra, `cod_quadra`, `quadra`, `version`, `date_
       </output>
     </remotesteps>
     <GUI>
-      <xloc>64</xloc>
-      <yloc>128</yloc>
+      <xloc>48</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

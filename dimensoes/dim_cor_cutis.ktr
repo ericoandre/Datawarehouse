@@ -715,7 +715,7 @@ INSERT INTO `dim_cor_cutis` (`id_dim_cor_cutis`, `cod_cor_cutis`, `cor_cutis`, `
       <schema_name/>
     </partitioning>
     <connection>Origem</connection>
-    <sql>SELECT ID_TIPO_COR as cod_cor_cutis, TIPO as cor_cutis FROM projetodw.TIPO_COR</sql>
+    <sql>SELECT ID_TIPO_COR as cod_cor_cutis, TIPO as cor_cutis FROM projetodw.TipoCor</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

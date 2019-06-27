@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>dim_municipio</name>
+    <name>dim_Localizacao</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -548,7 +548,7 @@
   </connection>
   <order>
     <hop>
-      <from>MUNICIPIO</from>
+      <from>Localizacao</from>
       <to>Dimension lookup/update</to>
       <enabled>Y</enabled>
     </hop>
@@ -575,14 +575,22 @@
       <schema_name/>
     </partitioning>
     <schema/>
-    <table>dim_municipio</table>
+    <table>dim_localizacao</table>
     <connection>dw</connection>
     <commit>100</commit>
     <update>Y</update>
     <fields>
       <key>
-        <name>cod_municipio</name>
-        <lookup>cod_municipio</lookup>
+        <name>cod_Localizacao</name>
+        <lookup>cod_Localizacao</lookup>
+      </key>
+      <key>
+        <name>LATITUDE</name>
+        <lookup>LATITUDE</lookup>
+      </key>
+      <key>
+        <name>LONGITUDE</name>
+        <lookup>LONGITUDE</lookup>
       </key>
       <key>
         <name>nome_municipio</name>
@@ -594,7 +602,7 @@
         <to>date_to</to>
       </date>
       <return>
-        <name>id_dim_municipio</name>
+        <name>id_dim_Localizacao</name>
         <rename/>
         <creation_method>tablemax</creation_method>
         <use_autoinc>N</use_autoinc>
@@ -619,8 +627,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>240</xloc>
-      <yloc>128</yloc>
+      <xloc>208</xloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -640,7 +648,7 @@
     <single_statement>Y</single_statement>
     <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
-    <sql>update dim_municipio set date_from = '1900-01-01 00:00:01', date_to = '2199-01-01 00:00:01', version = 1</sql>
+    <sql>update dim_Localizacao set date_from = '1900-01-01 00:00:01', date_to = '2199-01-01 00:00:01', version = 1</sql>
     <set_params>N</set_params>
     <insert_field/>
     <update_field/>
@@ -657,8 +665,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>608</xloc>
-      <yloc>128</yloc>
+      <xloc>576</xloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -679,7 +687,7 @@
     <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
     <sql>set global sql_mode = "NO_AUTO_VALUE_ON_ZERO";
-INSERT INTO dim_municipio (`id_dim_municipio`, `cod_municipio`, `nome_municipio`, `version`, `date_from`, `date_to`) VALUES (0, 0, "Nao Informado", 1,'1900-01-01 00:00:01', '2199-01-01 00:00:01');</sql>
+INSERT INTO dim_Localizacao (`id_dim_Localizacao`, `cod_Localizacao`, `nome_municipio`, `LATITUDE`, `LONGITUDE`, `version`, `date_from`, `date_to`) VALUES (0, 0, "Nao Informado", "Nao Informado", "Nao Informado", 1,'1900-01-01 00:00:01', '2199-01-01 00:00:01');</sql>
     <set_params>N</set_params>
     <insert_field/>
     <update_field/>
@@ -696,13 +704,13 @@ INSERT INTO dim_municipio (`id_dim_municipio`, `cod_municipio`, `nome_municipio`
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>128</yloc>
+      <xloc>384</xloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>MUNICIPIO</name>
+    <name>Localizacao</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -713,8 +721,12 @@ INSERT INTO dim_municipio (`id_dim_municipio`, `cod_municipio`, `nome_municipio`
       <schema_name/>
     </partitioning>
     <connection>Origem</connection>
-    <sql>SELECT ID_MUNICIPIO as cod_municipio, nome_municipio FROM Municipio
-</sql>
+    <sql>SELECT
+  ID_LOCALIZACAO as cod_Localizacao
+, LATITUDE
+, LONGITUDE
+, nome_municipio
+FROM Localizacao, Municipio WHERE Localizacao.ID_MUNICIPIO  = Municipio.ID_MUNICIPIO;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -729,8 +741,8 @@ INSERT INTO dim_municipio (`id_dim_municipio`, `cod_municipio`, `nome_municipio`
       </output>
     </remotesteps>
     <GUI>
-      <xloc>64</xloc>
-      <yloc>128</yloc>
+      <xloc>48</xloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

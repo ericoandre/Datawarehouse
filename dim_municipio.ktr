@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>DIM_SEXO</name>
+    <name>dim_Localizacao</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -548,7 +548,7 @@
   </connection>
   <order>
     <hop>
-      <from>Table input</from>
+      <from>MUNICIPIO</from>
       <to>Dimension lookup/update</to>
       <enabled>Y</enabled>
     </hop>
@@ -575,18 +575,18 @@
       <schema_name/>
     </partitioning>
     <schema/>
-    <table>dim_sexo</table>
+    <table>dim_Localizacao</table>
     <connection>dw</connection>
     <commit>100</commit>
     <update>Y</update>
     <fields>
       <key>
-        <name>cod_sexo</name>
-        <lookup>cod_sexo</lookup>
+        <name>cod_municipio</name>
+        <lookup>cod_municipio</lookup>
       </key>
       <key>
-        <name>SEXO_PESSOA</name>
-        <lookup>SEXO_PESSOA</lookup>
+        <name>nome_municipio</name>
+        <lookup>nome_municipio</lookup>
       </key>
       <date>
         <name/>
@@ -594,7 +594,7 @@
         <to>date_to</to>
       </date>
       <return>
-        <name>id_dim_sexo</name>
+        <name>id_dim_Localizacao</name>
         <rename/>
         <creation_method>tablemax</creation_method>
         <use_autoinc>N</use_autoinc>
@@ -620,7 +620,7 @@
     </remotesteps>
     <GUI>
       <xloc>208</xloc>
-      <yloc>32</yloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -640,7 +640,7 @@
     <single_statement>Y</single_statement>
     <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
-    <sql>update dim_sexo set date_from = '1900-01-01 00:00:01', date_to = '2199-01-01 00:00:01', version = 1</sql>
+    <sql>update dim_Localizacao set date_from = '1900-01-01 00:00:01', date_to = '2199-01-01 00:00:01', version = 1</sql>
     <set_params>N</set_params>
     <insert_field/>
     <update_field/>
@@ -658,7 +658,7 @@
     </remotesteps>
     <GUI>
       <xloc>576</xloc>
-      <yloc>32</yloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -679,7 +679,7 @@
     <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
     <sql>set global sql_mode = "NO_AUTO_VALUE_ON_ZERO";
-INSERT INTO dim_sexo (id_dim_sexo, `cod_sexo`, `SEXO_PESSOA`, `version`, `date_from`, `date_to`) VALUES (0, 00, "Nao Informado", 1,'1900-01-01 00:00:01', '2199-01-01 00:00:01');</sql>
+INSERT INTO dim_Localizacao (`id_dim_municipio`, `cod_municipio`, `nome_municipio`, `version`, `date_from`, `date_to`) VALUES (0, 0, "Nao Informado", 1,'1900-01-01 00:00:01', '2199-01-01 00:00:01');</sql>
     <set_params>N</set_params>
     <insert_field/>
     <update_field/>
@@ -697,12 +697,12 @@ INSERT INTO dim_sexo (id_dim_sexo, `cod_sexo`, `SEXO_PESSOA`, `version`, `date_f
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>32</yloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Table input</name>
+    <name>MUNICIPIO</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -713,7 +713,8 @@ INSERT INTO dim_sexo (id_dim_sexo, `cod_sexo`, `SEXO_PESSOA`, `version`, `date_f
       <schema_name/>
     </partitioning>
     <connection>Origem</connection>
-    <sql>SELECT ID_TIPO_SEXO as cod_sexo, TIPO as SEXO_PESSOA FROM projetodw.TipoSexo</sql>
+    <sql>SELECT ID_LOCALIZACAO as cod_Localizacao, LATITUDE, LONGITUDE FROM Municipio
+</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -729,7 +730,7 @@ INSERT INTO dim_sexo (id_dim_sexo, `cod_sexo`, `SEXO_PESSOA`, `version`, `date_f
     </remotesteps>
     <GUI>
       <xloc>32</xloc>
-      <yloc>32</yloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

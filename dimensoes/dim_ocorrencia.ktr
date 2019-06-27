@@ -597,7 +597,7 @@
     </remotesteps>
     <GUI>
       <xloc>464</xloc>
-      <yloc>256</yloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -657,8 +657,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>240</xloc>
-      <yloc>144</yloc>
+      <xloc>176</xloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -696,8 +696,8 @@ INSERT INTO dim_ocorrencia (id_dim_ocorrencia, `cod_rubrica`, `RUBRICA`, `versio
       </output>
     </remotesteps>
     <GUI>
-      <xloc>464</xloc>
-      <yloc>144</yloc>
+      <xloc>336</xloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -713,7 +713,7 @@ INSERT INTO dim_ocorrencia (id_dim_ocorrencia, `cod_rubrica`, `RUBRICA`, `versio
       <schema_name/>
     </partitioning>
     <connection>Origem</connection>
-    <sql>SELECT ID_TIPO_RUBRICA as cod_rubrica, TIPO as rubrica FROM projetodw.TIPO_RUBRICA</sql>
+    <sql>SELECT ID_TIPO_RUBRICA as cod_rubrica, TIPO as rubrica FROM projetodw.TipoRubrica</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -728,8 +728,8 @@ INSERT INTO dim_ocorrencia (id_dim_ocorrencia, `cod_rubrica`, `RUBRICA`, `versio
       </output>
     </remotesteps>
     <GUI>
-      <xloc>64</xloc>
-      <yloc>144</yloc>
+      <xloc>48</xloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

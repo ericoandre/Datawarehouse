@@ -605,8 +605,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>624</xloc>
-      <yloc>96</yloc>
+      <xloc>448</xloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -666,8 +666,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>96</yloc>
+      <xloc>160</xloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -705,8 +705,8 @@ INSERT INTO dim_escola (id_dim_escola, `cod_entidade`, `nome`,`version`, `date_f
       </output>
     </remotesteps>
     <GUI>
-      <xloc>432</xloc>
-      <yloc>96</yloc>
+      <xloc>304</xloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -723,9 +723,9 @@ INSERT INTO dim_escola (id_dim_escola, `cod_entidade`, `nome`,`version`, `date_f
     </partitioning>
     <connection>Origem</connection>
     <sql>SELECT
-  ID_ESCOLA as cod_entidade
+  ID_ENTIDADE as cod_entidade
 , NO_ENTIDADE as nome
-FROM projetodw.escolas</sql>
+FROM projetodw.Entidade</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -740,8 +740,8 @@ FROM projetodw.escolas</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>80</xloc>
-      <yloc>96</yloc>
+      <xloc>32</xloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
