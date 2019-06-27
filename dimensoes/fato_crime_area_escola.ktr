@@ -548,11 +548,6 @@
   </connection>
   <order>
     <hop>
-      <from>Table input</from>
-      <to>dim_conduta</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Memory group by</from>
       <to>Table output 2</to>
       <enabled>Y</enabled>
@@ -560,11 +555,6 @@
     <hop>
       <from>Select values</from>
       <to>Memory group by</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>dim_conduta</from>
-      <to>dim_cor_cutis</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -620,6 +610,11 @@
     <hop>
       <from>dim_sexo</from>
       <to>dim_quadra</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Table input</from>
+      <to>dim_cor_cutis</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -693,16 +688,36 @@
       <schema_name/>
     </partitioning>
     <connection>Origem</connection>
-    <sql>SELECT * FROM projetodw.Ocorrencia O, 
+    <sql>SELECT
+  O.ID_OCORRENCIA as cod_ocorrencia, O.conduta, COR.ID_TIPO_COR as cod_cor_cutis, COR.TIPO as cor_cutis
+, DEP.ID_TIPO_DEPENDENCIA as cod_dependencia, DEP.TIPO as dependencia, ESC.ID_ENTIDADE as cod_entidade
+, ESC.NO_ENTIDADE as nome, LOC.ID_LOCALIZACAO as cod_Localizacao, MUN.nome_municipio, MUN.ID_INDICE_POPULACIONAL, INPOPU.LABEL, RUB.ID_TIPO_RUBRICA as cod_rubrica
+, RUB.TIPO as rubrica, PER.ID_PERIODO as cod_periodo, PER.PERIODO as periodo, QUA.ID_TIPO_QUADRA as cod_quadra
+, QUA.TIPO as quadra, SEX.ID_TIPO_SEXO as cod_sexo, SEX.TIPO as SEXO_PESSOA, ZON.ID_TIPO_ZONA as cod_zona
+, ZON.TIPO as tipo_zona
+FROM 
+projetodw.Ocorrencia O, 
 projetodw.TipoCor COR, 
 projetodw.TipoDependencia DEP, 
-projetodw.escolas ESC,
-projetodw.Municipio MUN,
+projetodw.Entidade ESC,
+projetodw.Localizacao LOC,
 projetodw.TipoRubrica RUB,
 projetodw.Periodo PER,
 projetodw.TipoQuadra QUA,
 projetodw.TipoSexo SEX,
-projetodw.TipoZona ZON;</sql>
+projetodw.TipoZona ZON,
+projetodw.Municipio MUN,
+projetodw.IndicePopulacional INPOPU,
+projetodw.Envolvido ENV,
+projetodw.Tempo TEM
+WHERE O.ID_TIPO_RUBRICA = RUB.ID_TIPO_RUBRICA 
+AND O.ID_ENVOLVIDO =  ENV.ID_ENVOLVIDO
+AND O.ID_TEMPO = TEM.ID_TEMPO
+AND TEM.ID_PERIODO = PER.ID_PERIODO
+AND ENV.ID_TIPO_COR = COR.ID_TIPO_COR
+AND ENV.ID_TIPO_SEXO = SEX.ID_TIPO_SEXO
+and LOC.ID_MUNICIPIO =  MUN.ID_MUNICIPIO 
+and INPOPU.ID_INDICE_POPULACIONAL = MUN.ID_INDICE_POPULACIONAL;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -767,42 +782,6 @@ projetodw.TipoZona ZON;</sql>
     </GUI>
   </step>
   <step>
-    <name>dim_conduta</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>dw</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema/>
-      <table>dim_conduta</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>128</xloc>
-      <yloc>16</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>dim_cor_cutis</name>
     <type>DBLookup</type>
     <description/>
@@ -833,7 +812,7 @@ projetodw.TipoZona ZON;</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>224</xloc>
+      <xloc>144</xloc>
       <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
@@ -895,6 +874,18 @@ projetodw.TipoZona ZON;</sql>
       <orderby/>
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>cod_dependencia</name>
+        <field>cod_dependencia</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>cod_dependencia</name>
+        <rename>cod_dependencia</rename>
+        <default>0</default>
+        <type>Integer</type>
+      </value>
     </lookup>
     <attributes/>
     <cluster_schema/>
@@ -905,7 +896,7 @@ projetodw.TipoZona ZON;</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
+      <xloc>256</xloc>
       <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1173,16 +1164,28 @@ projetodw.TipoZona ZON;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection/>
+    <connection>dw</connection>
     <cache>N</cache>
     <cache_load_all>N</cache_load_all>
     <cache_size>0</cache_size>
     <lookup>
       <schema/>
-      <table>Tabela Lookup</table>
+      <table>dim_zona</table>
       <orderby/>
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>cod_zona</name>
+        <field>cod_zona</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>cod_zona</name>
+        <rename>cod_zona</rename>
+        <default>0</default>
+        <type>Integer</type>
+      </value>
     </lookup>
     <attributes/>
     <cluster_schema/>
@@ -1193,7 +1196,7 @@ projetodw.TipoZona ZON;</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>432</xloc>
+      <xloc>352</xloc>
       <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
