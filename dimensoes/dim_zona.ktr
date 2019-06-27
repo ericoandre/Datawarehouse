@@ -619,8 +619,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>208</xloc>
-      <yloc>16</yloc>
+      <xloc>240</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -657,8 +657,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>576</xloc>
-      <yloc>16</yloc>
+      <xloc>608</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -696,8 +696,8 @@ INSERT INTO dim_zona (id_dim_zona, `cod_zona`, `tipo_zona`, `version`, `date_fro
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>16</yloc>
+      <xloc>416</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -731,8 +731,8 @@ FROM TipoZona</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>32</xloc>
-      <yloc>16</yloc>
+      <xloc>64</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

@@ -596,8 +596,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>464</xloc>
-      <yloc>16</yloc>
+      <xloc>480</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -657,8 +657,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>176</xloc>
-      <yloc>16</yloc>
+      <xloc>192</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -696,8 +696,8 @@ INSERT INTO dim_ocorrencia (id_dim_ocorrencia, `cod_rubrica`, `RUBRICA`, `versio
       </output>
     </remotesteps>
     <GUI>
-      <xloc>336</xloc>
-      <yloc>16</yloc>
+      <xloc>352</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -728,8 +728,8 @@ INSERT INTO dim_ocorrencia (id_dim_ocorrencia, `cod_rubrica`, `RUBRICA`, `versio
       </output>
     </remotesteps>
     <GUI>
-      <xloc>48</xloc>
-      <yloc>16</yloc>
+      <xloc>64</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

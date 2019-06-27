@@ -619,8 +619,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>224</xloc>
-      <yloc>32</yloc>
+      <xloc>240</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -657,8 +657,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>656</xloc>
-      <yloc>32</yloc>
+      <xloc>672</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -696,8 +696,8 @@ INSERT INTO dim_quadra (id_dim_quadra, `cod_quadra`, `quadra`, `version`, `date_
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
-      <yloc>32</yloc>
+      <xloc>464</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -728,8 +728,8 @@ INSERT INTO dim_quadra (id_dim_quadra, `cod_quadra`, `quadra`, `version`, `date_
       </output>
     </remotesteps>
     <GUI>
-      <xloc>48</xloc>
-      <yloc>32</yloc>
+      <xloc>64</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

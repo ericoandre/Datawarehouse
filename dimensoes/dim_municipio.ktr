@@ -628,7 +628,7 @@
     </remotesteps>
     <GUI>
       <xloc>208</xloc>
-      <yloc>16</yloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -666,7 +666,7 @@
     </remotesteps>
     <GUI>
       <xloc>576</xloc>
-      <yloc>16</yloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -705,7 +705,7 @@ INSERT INTO dim_Localizacao (`id_dim_Localizacao`, `cod_Localizacao`, `nome_muni
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>16</yloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -741,8 +741,8 @@ FROM Localizacao, Municipio WHERE Localizacao.ID_MUNICIPIO  = Municipio.ID_MUNIC
       </output>
     </remotesteps>
     <GUI>
-      <xloc>48</xloc>
-      <yloc>16</yloc>
+      <xloc>64</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

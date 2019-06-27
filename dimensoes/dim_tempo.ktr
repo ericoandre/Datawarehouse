@@ -633,10 +633,6 @@
         <lookup>HORA_COMPLETA</lookup>
       </key>
       <key>
-        <name>PERIODO</name>
-        <lookup>PERIODO</lookup>
-      </key>
-      <key>
         <name>TRIMESTRE_NUMERO</name>
         <lookup>TRIMESTRE_NUMERO</lookup>
       </key>
@@ -692,7 +688,7 @@
     </remotesteps>
     <GUI>
       <xloc>208</xloc>
-      <yloc>16</yloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -729,8 +725,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>576</xloc>
-      <yloc>16</yloc>
+      <xloc>608</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -768,8 +764,8 @@ INSERT INTO `dim_tempo` (`id_dim_tempo`, `cod_ID_TEMPO`, `DIA_MES`, `MES_NUMERO`
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>16</yloc>
+      <xloc>416</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -799,7 +795,6 @@ INSERT INTO `dim_tempo` (`id_dim_tempo`, `cod_ID_TEMPO`, `DIA_MES`, `MES_NUMERO`
 , MINUTOS
 , SEGUNDOS
 , HORA_COMPLETA
-, PERIODO
 , TRIMESTRE_NUMERO
 , TRIMESTRE_NOME
 , SEMESTRE_NUMERO
@@ -822,8 +817,8 @@ FROM Tempo
       </output>
     </remotesteps>
     <GUI>
-      <xloc>32</xloc>
-      <yloc>16</yloc>
+      <xloc>64</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

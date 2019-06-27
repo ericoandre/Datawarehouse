@@ -626,9 +626,48 @@
     </partitioning>
     <give_back_row>N</give_back_row>
     <group>
-      </group>
+      <field>
+        <name>id_dim_cor_cutis</name>
+      </field>
+      <field>
+        <name>id_dim_dependencia</name>
+      </field>
+      <field>
+        <name>id_dim_zona</name>
+      </field>
+      <field>
+        <name>id_dim_Localizacao</name>
+      </field>
+      <field>
+        <name>id_dim_ocorrencia</name>
+      </field>
+      <field>
+        <name>id_dim_tempo</name>
+      </field>
+      <field>
+        <name>id_dim_periodo</name>
+      </field>
+      <field>
+        <name>id_dim_sexo</name>
+      </field>
+      <field>
+        <name>id_dim_quadra</name>
+      </field>
+      <field>
+        <name>id_dim_dependencia_1</name>
+      </field>
+      <field>
+        <name>total_crime</name>
+      </field>
+    </group>
     <fields>
-      </fields>
+      <field>
+        <aggregate/>
+        <subject>total_crime</subject>
+        <type>SUM</type>
+        <valuefield>total_crime</valuefield>
+      </field>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -656,6 +695,75 @@
     </partitioning>
     <fields>
       <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>cod_ocorrencia</name>
+      </remove>
+      <remove>
+        <name>conduta</name>
+      </remove>
+      <remove>
+        <name>cod_cor_cutis</name>
+      </remove>
+      <remove>
+        <name>cor_cutis</name>
+      </remove>
+      <remove>
+        <name>cod_dependencia</name>
+      </remove>
+      <remove>
+        <name>dependencia</name>
+      </remove>
+      <remove>
+        <name>cod_entidade</name>
+      </remove>
+      <remove>
+        <name>nome</name>
+      </remove>
+      <remove>
+        <name>cod_Localizacao</name>
+      </remove>
+      <remove>
+        <name>nome_municipio</name>
+      </remove>
+      <remove>
+        <name>ID_INDICE_POPULACIONAL</name>
+      </remove>
+      <remove>
+        <name>LABEL</name>
+      </remove>
+      <remove>
+        <name>cod_rubrica</name>
+      </remove>
+      <remove>
+        <name>rubrica</name>
+      </remove>
+      <remove>
+        <name>cod_periodo</name>
+      </remove>
+      <remove>
+        <name>periodo</name>
+      </remove>
+      <remove>
+        <name>cod_quadra</name>
+      </remove>
+      <remove>
+        <name>quadra</name>
+      </remove>
+      <remove>
+        <name>cod_sexo</name>
+      </remove>
+      <remove>
+        <name>SEXO_PESSOA</name>
+      </remove>
+      <remove>
+        <name>cod_zona</name>
+      </remove>
+      <remove>
+        <name>tipo_zona</name>
+      </remove>
+      <remove>
+        <name>cod_id_tempo</name>
+      </remove>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -666,7 +774,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>176</xloc>
+      <xloc>160</xloc>
       <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
@@ -689,7 +797,7 @@
 , ESC.NO_ENTIDADE as nome, LOC.ID_LOCALIZACAO as cod_Localizacao, MUN.nome_municipio, MUN.ID_INDICE_POPULACIONAL, INPOPU.LABEL, RUB.ID_TIPO_RUBRICA as cod_rubrica
 , RUB.TIPO as rubrica, PER.ID_PERIODO as cod_periodo, PER.PERIODO as periodo, QUA.ID_TIPO_QUADRA as cod_quadra
 , QUA.TIPO as quadra, SEX.ID_TIPO_SEXO as cod_sexo, SEX.TIPO as SEXO_PESSOA, ZON.ID_TIPO_ZONA as cod_zona
-, ZON.TIPO as tipo_zona, TEM.ID_TEMPO AS cod_id_tempo
+, ZON.TIPO as tipo_zona, TEM.ID_TEMPO AS cod_id_tempo, 1 * 1 AS total_crime 
 FROM 
 projetodw.Ocorrencia O, 
 projetodw.TipoCor COR, 
@@ -746,12 +854,12 @@ AND MUN.ID_MUNICIPIO = 1;</sql>
     </partitioning>
     <connection>dw</connection>
     <schema/>
-    <table/>
+    <table>fato_crime_area_escola</table>
     <commit>1000</commit>
-    <truncate>N</truncate>
+    <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
     <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
+    <specify_fields>Y</specify_fields>
     <partitioning_enabled>N</partitioning_enabled>
     <partitioning_field/>
     <partitioning_daily>N</partitioning_daily>
@@ -762,6 +870,50 @@ AND MUN.ID_MUNICIPIO = 1;</sql>
     <return_keys>N</return_keys>
     <return_field/>
     <fields>
+      <field>
+        <column_name>id_dim_cor_cutis</column_name>
+        <stream_name>id_dim_cor_cutis</stream_name>
+      </field>
+      <field>
+        <column_name>id_dim_dependencia</column_name>
+        <stream_name>id_dim_dependencia</stream_name>
+      </field>
+      <field>
+        <column_name>id_dim_zona</column_name>
+        <stream_name>id_dim_zona</stream_name>
+      </field>
+      <field>
+        <column_name>id_dim_Localizacao</column_name>
+        <stream_name>id_dim_Localizacao</stream_name>
+      </field>
+      <field>
+        <column_name>id_dim_ocorrencia</column_name>
+        <stream_name>id_dim_ocorrencia</stream_name>
+      </field>
+      <field>
+        <column_name>id_dim_tempo</column_name>
+        <stream_name>id_dim_tempo</stream_name>
+      </field>
+      <field>
+        <column_name>id_dim_periodo</column_name>
+        <stream_name>id_dim_periodo</stream_name>
+      </field>
+      <field>
+        <column_name>id_dim_sexo</column_name>
+        <stream_name>id_dim_sexo</stream_name>
+      </field>
+      <field>
+        <column_name>id_dim_quadra</column_name>
+        <stream_name>id_dim_quadra</stream_name>
+      </field>
+      <field>
+        <column_name>id_dim_dependencia_1</column_name>
+        <stream_name>id_dim_dependencia_1</stream_name>
+      </field>
+      <field>
+        <column_name>total_crime</column_name>
+        <stream_name>total_crime</stream_name>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>

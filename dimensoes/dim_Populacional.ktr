@@ -619,8 +619,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>208</xloc>
-      <yloc>16</yloc>
+      <xloc>224</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -657,8 +657,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>576</xloc>
-      <yloc>16</yloc>
+      <xloc>592</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -696,8 +696,8 @@ INSERT INTO dim_Populacional (id_dim_Populacional, `cod_Populacional`, `LABEL`, 
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>16</yloc>
+      <xloc>400</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -731,8 +731,8 @@ FROM projetodw.IndicePopulacional</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>32</xloc>
-      <yloc>16</yloc>
+      <xloc>48</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
